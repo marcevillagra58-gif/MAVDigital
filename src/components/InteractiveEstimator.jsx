@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import {
-  Calculator,
-  Check,
-  MessageSquare,
-  Sparkles,
-  Store,
-  Building,
-  Stethoscope,
-  Truck,
+import { 
+  Calculator, 
+  Check, 
+  MessageSquare, 
+  Sparkles, 
+  Store, 
+  Building, 
+  Stethoscope, 
+  Truck, 
   Eye 
 } from 'lucide-react';
 import PreviewModal from './PreviewModal';
@@ -73,19 +73,21 @@ export default function InteractiveEstimator() {
             </h4>
             <div className="options-grid">
               {businessTypes.map((type) => (
-                <button
+                <div
                   key={type.id}
                   className={`option-btn ${businessType === type.id ? 'selected' : ''}`}
                   onClick={() => setBusinessType(type.id)}
                 >
-                  <div className="option-btn-check">
-                    {businessType === type.id && <Check size={14} />}
+                  <div className="option-btn-top">
+                    <div className="option-btn-check">
+                      {businessType === type.id && <Check size={14} />}
+                    </div>
+                    <div className="option-btn-text">
+                      <h5>{type.label}</h5>
+                      <p>{type.desc}</p>
+                    </div>
                   </div>
-                  <div className="option-btn-text">
-                    <h5>{type.label}</h5>
-                    <p>{type.desc}</p>
-                  </div>
-                </button>
+                </div>
               ))}
             </div>
           </div>
@@ -99,30 +101,34 @@ export default function InteractiveEstimator() {
                 const isSelected = selectedFeatures.includes(feat.id);
                 return (
                   <div key={feat.id} className="option-card-wrapper">
-                    <button
+                    <div
                       className={`option-btn ${isSelected ? 'selected' : ''}`}
                       onClick={() => toggleFeature(feat.id)}
                     >
-                      <div className="option-btn-check">
-                        {isSelected && <Check size={14} />}
+                      <div className="option-btn-top">
+                        <div className="option-btn-check">
+                          {isSelected && <Check size={14} />}
+                        </div>
+                        <div className="option-btn-text">
+                          <h5>{feat.label}</h5>
+                          <p>{feat.desc}</p>
+                        </div>
                       </div>
-                      <div className="option-btn-text">
-                        <h5>{feat.label}</h5>
-                        <p>{feat.desc}</p>
-                      </div>
-                    </button>
 
-                    <button
-                      className="btn-preview-eye"
-                      title="Ver pantalla de ejemplo"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setActivePreviewFeature(feat);
-                      }}
-                    >
-                      <Eye size={14} />
-                      <span>Previa</span>
-                    </button>
+                      <div className="option-btn-bottom">
+                        <button
+                          className="btn-preview-eye"
+                          title="Ver pantalla de ejemplo"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setActivePreviewFeature(feat);
+                          }}
+                        >
+                          <Eye size={13} />
+                          <span>Ver Previa</span>
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 );
               })}
