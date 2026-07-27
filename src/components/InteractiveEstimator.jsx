@@ -19,6 +19,7 @@ export default function InteractiveEstimator() {
     { id: 'cot', label: 'Declaración de COT (ARBA / AFIP)', desc: 'Gestión de remitos y traslados' },
     { id: 'turnero', label: 'Turnero & Agenda Online', desc: 'Reservas 24/7 automáticas' },
     { id: 'dashboard', label: 'Dashboard / App a Medida', desc: 'Digitalización de procesos' },
+    { id: 'api', label: 'Integración vía API con Webs de Terceros', desc: 'Conexión con ERPs, CRMs o webs externas' },
   ];
 
   const toggleFeature = (id) => {
