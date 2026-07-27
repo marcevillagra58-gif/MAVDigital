@@ -1,0 +1,26 @@
+.whatsapp-floating {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  filter: drop-shadow(0 4px 15px rgba(37, 211, 102, 0.45));
+}
+
+.whatsapp-floating:hover {
+  transform: scale(1.12) rotate(-5deg);
+  filter: drop-shadow(0 6px 25px rgba(37, 211, 102, 0.7));
+}
+
+.whatsapp-floating svg {
+  width: 58px;
+  height: 58px;
+}

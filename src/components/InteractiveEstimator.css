@@ -1,0 +1,111 @@
+.estimator-card {
+  padding: 3rem;
+  background: linear-gradient(180deg, rgba(17, 24, 39, 0.9) 0%, rgba(9, 13, 22, 0.95) 100%);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glow);
+}
+
+.estimator-step {
+  margin-bottom: 2.5rem;
+}
+
+.estimator-step h4 {
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.option-btn {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-light);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  color: var(--text-main);
+  text-align: left;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.option-btn:hover {
+  border-color: var(--primary);
+  background: rgba(0, 240, 255, 0.05);
+}
+
+.option-btn.selected {
+  border-color: var(--primary);
+  background: rgba(0, 240, 255, 0.12);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+}
+
+.option-btn-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid var(--text-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.option-btn.selected .option-btn-check {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #040914;
+}
+
+.option-btn-text h5 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+
+.option-btn-text p {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.estimator-summary {
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.summary-info h5 {
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.summary-info p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .estimator-card {
+    padding: 1.5rem;
+  }
+  .estimator-summary {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
