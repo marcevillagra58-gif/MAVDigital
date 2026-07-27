@@ -1,10 +1,22 @@
 import { useState } from 'react';
-import { Calculator, Check, MessageSquare, Sparkles, Store, Building, Stethoscope, Truck } from 'lucide-react';
+import {
+  Calculator,
+  Check,
+  MessageSquare,
+  Sparkles,
+  Store,
+  Building,
+  Stethoscope,
+  Truck,
+  Eye 
+} from 'lucide-react';
+import PreviewModal from './PreviewModal';
 import './InteractiveEstimator.css';
 
 export default function InteractiveEstimator() {
   const [businessType, setBusinessType] = useState('comercio');
   const [selectedFeatures, setSelectedFeatures] = useState(['web']);
+  const [activePreviewFeature, setActivePreviewFeature] = useState(null);
 
   const businessTypes = [
     { id: 'comercio', label: 'Comercio / Tienda', desc: 'Ventas al público o local', icon: <Store size={18} /> },
@@ -38,7 +50,7 @@ export default function InteractiveEstimator() {
       .map((fId) => featureOptions.find((f) => f.id === fId)?.label)
       .join(', ');
 
-    const message = `Hola MaV Digital! 👋 Me interesa cotizar una solución web para mi tipo de negocio: *${selectedBusiness}*.\n\nFuncionalidades de interés:\n- ${selectedFeatLabels}\n\n¿Podrían darme más asesoramiento?`;
+    const message = `Hola MVD Digital! 👋 Me interesa cotizar una solución web para mi tipo de negocio: *${selectedBusiness}*.\n\nFuncionalidades de interés:\n- ${selectedFeatLabels}\n\n¿Podrían darme más asesoramiento?`;
 
     return `https://wa.me/5491100000000?text=${encodeURIComponent(message)}`;
   };
@@ -86,19 +98,32 @@ export default function InteractiveEstimator() {
               {featureOptions.map((feat) => {
                 const isSelected = selectedFeatures.includes(feat.id);
                 return (
-                  <button
-                    key={feat.id}
-                    className={`option-btn ${isSelected ? 'selected' : ''}`}
-                    onClick={() => toggleFeature(feat.id)}
-                  >
-                    <div className="option-btn-check">
-                      {isSelected && <Check size={14} />}
-                    </div>
-                    <div className="option-btn-text">
-                      <h5>{feat.label}</h5>
-                      <p>{feat.desc}</p>
-                    </div>
-                  </button>
+                  <div key={feat.id} className="option-card-wrapper">
+                    <button
+                      className={`option-btn ${isSelected ? 'selected' : ''}`}
+                      onClick={() => toggleFeature(feat.id)}
+                    >
+                      <div className="option-btn-check">
+                        {isSelected && <Check size={14} />}
+                      </div>
+                      <div className="option-btn-text">
+                        <h5>{feat.label}</h5>
+                        <p>{feat.desc}</p>
+                      </div>
+                    </button>
+
+                    <button
+                      className="btn-preview-eye"
+                      title="Ver pantalla de ejemplo"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActivePreviewFeature(feat);
+                      }}
+                    >
+                      <Eye size={14} />
+                      <span>Previa</span>
+                    </button>
+                  </div>
                 );
               })}
             </div>
@@ -122,6 +147,16 @@ export default function InteractiveEstimator() {
           </div>
         </div>
       </div>
+
+      {/* MODAL DE VISTA PREVIA */}
+      <PreviewModal
+        feature={activePreviewFeature}
+        onClose={() => setActivePreviewFeature(null)}
+        isSelected={activePreviewFeature ? selectedFeatures.includes(activePreviewFeature.id) : false}
+        onSelect={(id) => {
+          toggleFeature(id);
+        }}
+      />
     </section>
   );
 }
